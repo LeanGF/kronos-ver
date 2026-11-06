@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0A1020">
+  <title>Kronos</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icono-192.png">
+  <link rel="apple-touch-icon" href="icono-192.png">
+  <link rel="stylesheet" href="estilos.css">
+  <script>
+    // el tema (claro u oscuro) se pone antes de dibujar, para que no parpadee
+    (function () {
+      var t = new URLSearchParams(location.search).get("tema") || localStorage.getItem("kronos-tema") || "auto";
+      var oscuro = t === "oscuro" || (t === "auto" && matchMedia("(prefers-color-scheme: dark)").matches);
+      document.documentElement.dataset.tema = oscuro ? "oscuro" : "claro";
+    })();
+  </script>
+</head>
+<body>
+  <!-- PC: menú a la izquierda -->
+  <aside class="lateral">
+    <div class="marca"><img src="icono-192.png" alt=""><span>Kronos</span></div>
+    <nav class="menu" id="menu-lateral"></nav>
+    <div id="lateral-examenes" class="lateral-examenes"></div>
+    <div class="lateral-pie"><div class="tema-lugar"></div><span id="estado-lateral"></span></div>
+  </aside>
+
+  <div class="centro">
+    <!-- celu: logo arriba -->
+    <header class="barra">
+      <div class="marca"><img src="icono-192.png" alt=""><div><span>Kronos</span><small>Planificador personal de estudio</small></div></div>
+      <div class="barra-derecha"><div id="estado-conexion" class="conexion"></div>
+        <div class="tema-lugar"></div>
+        <button class="boton-isla" onclick="alternarIsla()" title="Isla flotante"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><rect x="11.5" y="8.5" width="6.5" height="7" rx="1.5" fill="currentColor" stroke="none"/></svg></button></div>
+    </header>
+    <div id="sin-conexion" class="banda-offline oculto"></div>
+    <main id="vista"></main>
+  </div>
+
+  <!-- PC: recuadro de la derecha (próximos finales y detalle del día) -->
+  <aside class="derecha" id="derecha"></aside>
+
+  <!-- celu: menú abajo -->
+  <nav class="menu-abajo" id="menu-abajo"></nav>
+
+  <!-- isla flotante: lo de hoy y el reloj (se mueve, se pliega y se puede sacar afuera) -->
+  <div id="isla-pagina" class="isla-pagina oculto"><div id="isla" class="isla"></div></div>
+
+  <div id="modal" class="modal oculto"><div class="caja" id="modal-caja"></div></div>
+  <div id="aviso" class="toast oculto"></div>
+  <!-- tildes sin guardar: se guardan con "Actualizar rutina" -->
+  <div id="cambios" class="barra-cambios oculto"></div>
+
+  <script src="inercia.js"></script>
+  <script src="comisiones.js"></script>
+  <script>window.KRONOS_VISOR = true;</script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "name": "Kronos",
+  "short_name": "Kronos",
+  "description": "Plan de estudio de Lean",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0A1020",
+  "theme_color": "#0B1220",
+  "icons": [
+    {
+      "src": "icono-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icono-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icono-mascara-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
